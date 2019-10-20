@@ -5,5 +5,5 @@ export default (someUser) => {
       "user": (user) => `Hello ${user.getName()}!`
    };
 
-   return mapping[someUser.getType()](someUser);
+   return mapping[someUser.getType()](someUser); 
 };

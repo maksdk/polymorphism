@@ -4,37 +4,86 @@ class Easy {
    constructor() {
       this.rows = 3;
       this.cols = 3;
+      this.emptyCell = "empty";
       this.field = [];
 
       this.createField();
    }
+
    createField() {
       this.field = [];
       for(let y = 0; y < this.rows; y++) {
          this.field[y] = [];
          for(var x = 0; x < this.cols; x++) {
-            this.field[y][x] = 0;
+            this.field[y][x] = this.emptyCell ;
          }
       }
    }
-   go(row, col) {
-      this.field[row][col] = 1;
-   }
-   checkWin(fromR, fromC) {
-      const matrix = [
-         {x: 1, y: 1 },
-         {x:-1, y: -1},
-         {x: -1, y: 1 },
-         {x: 1, y: -1 },
-         {x: 0, y: 1 },
-         {x: 1, y: 0 },
-         {x: 0, y: -1 },
-         {x: -1, y: 0 }
-      ];
 
-      for (let i = 0; i < matrix.length; i++) {
-         
+   fillEmpty(value) {
+      for(let y = 0; y < this.rows; y++) {
+         if (!this.field[y]) this.field[y] = [];
+
+         for(let x = 0; x < this.cols; x++) {
+            if (!this.field[y][x]) {
+               this.field[y][x] = value;
+               return this.check(value, x, y);
+            }
+         }
       }
+   }
+
+   fillFrom(value, x, y) {
+      if (!this.field[y]) this.field[y] = []; 
+      this.field[y][x] = value;
+      return this.check(value, x, y);
+   }
+
+   check(value, fromX, fromY) {
+      const depth = 2;
+      const countNeedCells = 2;
+      let foundedCells = 0;
+
+      const matrixes = [
+         [
+            {x: 1, y: 1},
+            {x:-1, y:-1}
+         ],
+         [
+            {x:-1, y: 1},
+            {x: 1, y:-1}
+         ],
+         [
+            {x: 0, y: 1},
+            {x: 0, y:-1}
+         ],
+         [
+            {x: 1, y: 0},
+            {x:-1, y: 0}
+         ]
+      ];
+      
+      for(let j = 0; j < matrixes.length; j++) {
+
+         const mtx = matrixes[j];
+
+         for(let i = 1; i <= depth; i++) {
+
+            for(let k = 0; k < mtx.length; k++) {
+               const x = fromX + mtx[k].x * i; 
+               const y = fromY + mtx[k].y * i;
+            
+               if (this.field[y] && this.field[y][x] === value) {
+                  foundedCells += 1;
+                  if (foundedCells === countNeedCells) return true;
+               }
+            }
+         }
+
+         foundedCells = 0;
+      }
+
+      return false;
    }
    // END
 }

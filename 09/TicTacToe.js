@@ -5,15 +5,22 @@ import Normal from './strategies/Normal';
 class TicTacToe {
    constructor(level) {
       const levelName = level || "easy";
+
       const levels = {
          "easy": Easy,
          "normal": Normal
       };
-      this.level = new levels[levelName]();
+
+      this.game = new levels[levelName]();
    }
-   go(row, col) {
-      this.level.go(row, col);
-      return this.level.checkWin();
+
+   go(y=-1, x=-1, auto) {
+      if (y === -1 && x === -1) {
+         return this.game.fillEmpty("O", auto);
+      }
+      else {
+         return this.game.fillFrom("X", x, y);
+      }
    }
 }
 

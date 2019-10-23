@@ -1,9 +1,21 @@
+//@ts-check
 import path from 'path';
 import fs from 'fs';
 import JsonParser from './parsers/JsonParser';
 import YamlParser from './parsers/YamlParser';
 import Config from './Config';
 
-// BEGIN (write your solution here)
+const mapParsers = {
+   "json": JsonParser,
+   "yaml": YamlParser,
+   "yml": YamlParser
+};
 
-// END
+export default class {
+   static factory(filepath) {
+      const ext = path.extname(filepath).replace(".", "");
+      const data = fs.readFileSync(filepath);
+      const parsedData = mapParsers[ext].parse(data);
+      return new Config(parsedData);
+   }
+}

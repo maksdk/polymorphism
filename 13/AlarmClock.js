@@ -11,6 +11,8 @@ export default class AlarmClock {
 
       this.state = null;
       this.setState(ClockState);
+
+      this.alarmOn = false;
    }
 
    setState(stateClass) {
@@ -22,7 +24,7 @@ export default class AlarmClock {
    }
 
    longClickMode() {
-      // включает или отключает часы
+      this.alarmOn = true;
    } 
 
    getCurrentMode() {
@@ -30,9 +32,13 @@ export default class AlarmClock {
    } 
    
    isAlarmOn() {
-      
+      return this.alarmOn;
    } 
-   isAlarmTime() {} // - возвращает true, если время на часах совпадает со временем на будильнике
+
+   isAlarmTime() {
+      return this.hours() === this.alarmHours() && 
+      this.minutes() === this.alarmMinutes();
+   } 
    
    hours() {
       return this.clockH;
@@ -51,12 +57,16 @@ export default class AlarmClock {
    } 
    
    clickH() {
-      
+      this.state.clickH()
    } 
    
    clickM() {
-      
+      this.state.clickM()
    } 
 
-   tick() {}//- при вызове увеличивает время на одну минуту и, если нужно, активирует звонок будильника
+   tick() {
+      this.state.tick();
+
+      
+   }
 } 

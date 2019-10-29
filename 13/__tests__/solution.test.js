@@ -85,67 +85,67 @@ describe('AlarmClock', () => {
       expect(clock.alarmHours()).toBe(0);
    });
 
-   // it('should not start bell if alarm off', () => {
-   //    const clock = new AlarmClock();
+   it('should not start bell if alarm off', () => {
+      const clock = new AlarmClock();
 
-   //    for (let i = 0; i < 18 * 60; i += 1) {
-   //       clock.tick();
-   //    }
+      for (let i = 0; i < 18 * 60; i += 1) {
+         clock.tick();
+      }
 
-   //    expect(clock.isAlarmTime()).toBe(true);
-   //    expect(clock.getCurrentMode()).toBe('clock');
-   //    clock.clickM();
-   //    clock.clickH();
+      expect(clock.isAlarmTime()).toBe(true);
+      expect(clock.getCurrentMode()).toBe('clock');
+      clock.clickM();
+      clock.clickH();
 
-   //    clock.tick();
-   //    expect(clock.getCurrentMode()).toBe('clock');
-   // });
+      clock.tick();
+      expect(clock.getCurrentMode()).toBe('clock');
+   });
 
-   // it('should start bell if alarm on 1', () => {
-   //    const clock = new AlarmClock();
-   //    clock.longClickMode();
+   it('should start bell if alarm on 1', () => {
+      const clock = new AlarmClock();
+      clock.longClickMode();
 
-   //    for (let i = 0; i < 18 * 60; i += 1) {
-   //       clock.tick();
-   //    }
+      for (let i = 0; i < 18 * 60; i += 1) {
+         clock.tick();
+      }
 
-   //    expect(clock.isAlarmTime()).toBe(true);
-   //    expect(clock.getCurrentMode()).toBe('bell');
-   //    clock.clickM();
-   //    clock.clickH();
+      expect(clock.isAlarmTime()).toBe(true);
+      expect(clock.getCurrentMode()).toBe('bell');
+      clock.clickM();
+      clock.clickH();
 
-   //    clock.tick();
-   //    expect(clock.getCurrentMode()).toBe('clock');
-   // });
+      clock.tick();
+      expect(clock.getCurrentMode()).toBe('clock');
+   });
 
-   // it('should start bell if alarm on 2', () => {
-   //    const clock = new AlarmClock();
-   //    clock.longClickMode();
+   it('should start bell if alarm on 2', () => {
+      const clock = new AlarmClock();
+      clock.longClickMode();
 
-   //    for (let i = 0; i < 18 * 60; i += 1) {
-   //       clock.tick();
-   //    }
-   //    expect(clock.isAlarmTime()).toBe(true);
-   //    expect(clock.getCurrentMode()).toBe('bell');
+      for (let i = 0; i < 18 * 60; i += 1) {
+         clock.tick();
+      }
+      expect(clock.isAlarmTime()).toBe(true);
+      expect(clock.getCurrentMode()).toBe('bell');
 
-   //    clock.clickMode();
-   //    expect(clock.getCurrentMode()).toBe('clock');
-   // });
+      clock.clickMode();
+      expect(clock.getCurrentMode()).toBe('clock');
+   });
 
-   // it('should start bell if state is Alarm', () => {
-   //    const clock = new AlarmClock();
-   //    clock.longClickMode();
-   //    clock.clickMode();
-   //    expect(clock.getCurrentMode()).toBe('alarm');
+   it('should start bell if state is Alarm', () => {
+      const clock = new AlarmClock();
+      clock.longClickMode();
+      clock.clickMode();
+      expect(clock.getCurrentMode()).toBe('alarm');
 
-   //    for (let i = 0; i < 18 * 60; i += 1) {
-   //       clock.tick();
-   //    }
-   //    expect(clock.isAlarmOn()).toBe(true);
-   //    expect(clock.isAlarmTime()).toBe(true);
-   //    expect(clock.getCurrentMode()).toBe('bell');
+      for (let i = 0; i < 18 * 60; i += 1) {
+         clock.tick();
+      }
+      expect(clock.isAlarmOn()).toBe(true);
+      expect(clock.isAlarmTime()).toBe(true);
+      expect(clock.getCurrentMode()).toBe('bell');
 
-   //    clock.clickMode();
-   //    expect(clock.getCurrentMode()).toBe('clock');
-   // });
+      clock.clickMode();
+      expect(clock.getCurrentMode()).toBe('clock');
+   });
 });

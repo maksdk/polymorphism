@@ -1,7 +1,7 @@
 //@ts-check
 import State from "./State";
 import AlarmState from "./AlarmState";
-// import BellState from "./BellState";
+import BellState from "./BellState";
 
 export default class ClockState extends State {
    constructor(clock) {
@@ -9,21 +9,25 @@ export default class ClockState extends State {
       this.nextState = AlarmState;
    }
 
+   setNextState(nextState) {
+      this.clock.setState(nextState || this.nextState);
+   }
+
    getMode() {
       return "clock";
    }
 
    clickH() {
-      this.clock.clockH += 1;
+      this.clock.incrementH("clockTime");
    }
 
    clickM() {
-      this.clock.clockM += 1;
+      this.clock.incrementM("clockTime");
    }
 
    tick() {
       if (this.clock.isAlarmTime() && this.clock.isAlarmOn()) {
-         // this.setNextState(BellState);
+         this.setNextState(BellState);
       }
    }
 }

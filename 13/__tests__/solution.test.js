@@ -44,45 +44,46 @@ describe('AlarmClock', () => {
       expect(clock.getCurrentMode()).toBe('clock');
    });
 
-   // it('should change hours and minutes', () => {
-   //    const clock = new AlarmClock();
-   //    clock.clickH();
-   //    expect(clock.minutes()).toBe(0);
-   //    expect(clock.hours()).toBe(13);
-   //    expect(clock.alarmHours()).toBe(6);
-   //    expect(clock.alarmMinutes()).toBe(0);
+   it('should change hours and minutes', () => {
+      const clock = new AlarmClock();
+      clock.clickH();
+      expect(clock.minutes()).toBe(0);
+      expect(clock.hours()).toBe(13);
+      expect(clock.alarmHours()).toBe(6);
+      expect(clock.alarmMinutes()).toBe(0);
 
-   //    clock.clickM();
-   //    expect(clock.minutes()).toBe(1);
-   //    expect(clock.hours()).toBe(13);
-   //    expect(clock.alarmHours()).toBe(6);
-   //    expect(clock.alarmMinutes()).toBe(0);
+      clock.clickM();
+      expect(clock.minutes()).toBe(1);
+      expect(clock.hours()).toBe(13);
+      expect(clock.alarmHours()).toBe(6);
+      expect(clock.alarmMinutes()).toBe(0);
 
-   //    clock.clickMode();
+      clock.clickMode();
+      
+      clock.clickH();
+      expect(clock.minutes()).toBe(1);
+      expect(clock.hours()).toBe(13);
+      expect(clock.alarmHours()).toBe(7);
+      expect(clock.alarmMinutes()).toBe(0);
+      
+      clock.clickM();
+      expect(clock.minutes()).toBe(1);
+      expect(clock.hours()).toBe(13);
+      expect(clock.alarmHours()).toBe(7);
+      expect(clock.alarmMinutes()).toBe(1);
+      
+      for (let i = 0; i < 60; i += 1) {
+         clock.clickM();
+      }
 
-   //    clock.clickH();
-   //    expect(clock.minutes()).toBe(1);
-   //    expect(clock.hours()).toBe(13);
-   //    expect(clock.alarmHours()).toBe(7);
-   //    expect(clock.alarmMinutes()).toBe(0);
+      expect(clock.alarmMinutes()).toBe(1);
+      expect(clock.alarmHours()).toBe(7);
 
-   //    clock.clickM();
-   //    expect(clock.minutes()).toBe(1);
-   //    expect(clock.hours()).toBe(13);
-   //    expect(clock.alarmHours()).toBe(7);
-   //    expect(clock.alarmMinutes()).toBe(1);
-
-   //    for (let i = 0; i < 60; i += 1) {
-   //       clock.clickM();
-   //    }
-   //    expect(clock.alarmMinutes()).toBe(1);
-   //    expect(clock.alarmHours()).toBe(7);
-
-   //    for (let i = 0; i < 17; i += 1) {
-   //       clock.clickH();
-   //    }
-   //    expect(clock.alarmHours()).toBe(0);
-   // });
+      for (let i = 0; i < 17; i += 1) {
+         clock.clickH();
+      }
+      expect(clock.alarmHours()).toBe(0);
+   });
 
    // it('should not start bell if alarm off', () => {
    //    const clock = new AlarmClock();

@@ -3,11 +3,21 @@ import ClockState from "./states/ClockState";
 
 export default class AlarmClock {
    constructor() {
-      this.clockH = 12;
-      this.clockM = 0;
+      this.clockTime = {
+         h: 12,
+         m: 0
+      };
 
-      this.alarmH = 6;
-      this.alarmM = 0;
+      this.alarmTime = {
+         h: 6,
+         m: 0
+      };
+
+      // this.clockH = 12;
+      // this.clockM = 0;
+
+      // this.alarmH = 6;
+      // this.alarmM = 0;
 
       this.state = null;
       this.setState(ClockState);
@@ -24,7 +34,7 @@ export default class AlarmClock {
    }
 
    longClickMode() {
-      this.alarmOn = true;
+      this.alarmOn = !this.alarmOn;
    } 
 
    getCurrentMode() {
@@ -41,19 +51,19 @@ export default class AlarmClock {
    } 
    
    hours() {
-      return this.clockH;
+      return this.clockTime.h;
    }
    
    minutes() {
-      return this.clockM;
+      return this.clockTime.m;
    } 
    
    alarmHours() {
-      return this.alarmH;
+      return this.alarmTime.h;
    } 
    
    alarmMinutes() {
-      return this.alarmM;
+      return this.alarmTime.m;
    } 
    
    clickH() {
@@ -64,9 +74,19 @@ export default class AlarmClock {
       this.state.clickM()
    } 
 
-   tick() {
-      this.state.tick();
+   incrementH(typeTime) {
+      this[typeTime].h = (this[typeTime].h + 1) % 24;
+   }
 
-      
+   incrementM(typeTime) {
+      this[typeTime].m = (this[typeTime].m + 1) % 60;
+   }
+
+   tick() {
+      this.incrementM("clockTime");
+      if (this.minutes() === 0) {
+         this.incrementH("clockTime");
+      }
+      this.state.tick();
    }
 } 

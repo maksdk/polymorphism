@@ -1,4 +1,4 @@
-import BellState from "./BellState";
+// import BellState from "./BellState";
 
 //@ts-check
 export default class State {
@@ -17,11 +17,5 @@ export default class State {
 
    clickM() {
 
-   }
-
-   tick() {
-      if (this.clock.isAlarmTime() && this.clock.isAlarmOn()) {
-         this.setNextState(BellState);
-      }
    }
 }

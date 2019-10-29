@@ -13,12 +13,6 @@ export default class AlarmClock {
          m: 0
       };
 
-      // this.clockH = 12;
-      // this.clockM = 0;
-
-      // this.alarmH = 6;
-      // this.alarmM = 0;
-
       this.state = null;
       this.setState(ClockState);
 

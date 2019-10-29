@@ -1,5 +1,3 @@
-// import BellState from "./BellState";
-
 //@ts-check
 export default class State {
    constructor(clock) {
